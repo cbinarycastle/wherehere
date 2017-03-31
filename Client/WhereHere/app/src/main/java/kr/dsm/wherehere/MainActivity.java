@@ -17,34 +17,21 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
+    private MapFragment mMapFragment;
     private RankingFragment rankingFragment;
     private AsyncHttpClient mHttpClient;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            fragmentTransaction = fragmentManager.beginTransaction();
-            switch (item.getItemId()) {
-                case R.id.navigation_map:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
-                    return true;
-                case R.id.navigation_ranking:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
-                    return true;
-                case R.id.navigation_review:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        fragmentManager = getSupportFragmentManager();
+
+        mMapFragment = new MapFragment();
+        rankingFragment = new RankingFragment();
+
+        fragmentManager.beginTransaction().replace(R.id.content, rankingFragment).commit();
 
         RequestParams params = new RequestParams("purpose", "ranking");
 
@@ -70,9 +57,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         fragmentManager.beginTransaction().replace(R.id.content, new RankingFragment()).commit();
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            switch (item.getItemId()) {
+                case R.id.navigation_map:
+                    fragmentTransaction.replace(R.id.content, mMapFragment).commit();
+                    return true;
+                case R.id.navigation_ranking:
+                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
+                    return true;
+                case R.id.navigation_review:
+                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
+                    return true;
+            }
+            return false;
+        }
+    };
 
 }
