@@ -1,11 +1,17 @@
 package kr.dsm.wherehere;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -16,6 +22,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
  */
 
 public class MapFragment extends Fragment {
+
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 10;
 
     private GoogleMap mGoogleMap;
     private MapView mMapView;
@@ -31,11 +39,25 @@ public class MapFragment extends Fragment {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-//                initializeMap(GoogleMap googleMap);
+                mGoogleMap = googleMap;
+                initializeMap();
             }
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    initializeMap();
+                } else {
+                    Toast.makeText(getContext(), "지도를 사용하기 위해서는 위치 권한이 필요합니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+        }
     }
 
     @Override
@@ -68,10 +90,21 @@ public class MapFragment extends Fragment {
         if (mGoogleMap != null) mMapView.onLowMemory();
     }
 
-//    private void initializeMap() {
-//        if (mGoogleMap != null) {
-//
-//        }
-//    }
+    private void initializeMap() {
+        if (mGoogleMap != null) {
+            // check permission
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                // show My Location button
+                mGoogleMap.setMyLocationEnabled(true);
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
+
+
+        }
+    }
 
 }
