@@ -15,8 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +67,8 @@ public class WritePostActivity extends Fragment {
     private String reqUrl = "http://192.168.20.7:8080/writepost.do";
     private AsyncHttpClient client;
     private View view;
+    private Spinner spinner;
+
 
     RequestParams params = new RequestParams();
 
@@ -77,31 +83,40 @@ public class WritePostActivity extends Fragment {
         photoBtn = (Button) view.findViewById(R.id.photo);
         photoBtn.setOnClickListener(showGallery);
 
+        spinner = (Spinner) view.findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.region, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+//                tv.setText("position : " + position +
+//                        parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
         postBtn = (Button) view.findViewById(R.id.post);
         postBtn.setOnClickListener(postArticle);
 
         titleInput = (EditText) view.findViewById(R.id.title);
         contentInput = (EditText) view.findViewById(R.id.content);
 
-//        fragmentManager = getSupportFragmentManager();
-//
-//        rankingFragment = new RankingFragment();
-//        setContentView(R.layout.activity_main);
-//
-//        fragmentManager.beginTransaction().replace(R.id.content, new RankingFragment()).commit();
-//
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         return view;
     }
 
     Button.OnClickListener showGallery = new View.OnClickListener() {
         public void onClick(View v) {
-//            Intent intent = new Intent();
-//            intent.setType("image/*");
-//            intent.setAction(Intent.ACTION_GET_CONTENT);
-//            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
@@ -113,15 +128,15 @@ public class WritePostActivity extends Fragment {
             String title = titleInput.getText().toString();
             String content = contentInput.getText().toString();
             JSONObject jParam = new JSONObject();
-            try{
+            try {
                 jParam.put("title", title);
-                jParam.put("title", content);
+                jParam.put("content", content);
                 jParam.put("writer", "test");
                 jParam.put("age", 19);
                 jParam.put("x", 1.0);
                 jParam.put("y", 50.5);
                 JSONArray imageArr = new JSONArray();
-                for(String image : base64ImageList) {
+                for (String image : base64ImageList) {
                     JSONObject temp = new JSONObject();
                     try {
                         temp.put("data", image);
@@ -135,16 +150,8 @@ public class WritePostActivity extends Fragment {
             } catch (Exception e) {
 
             }
-//            params.put("title", title);
-//            params.put("title", content);
-//            params.put("writer", "test");
-//            params.put("age", 19);
-//            params.put("x", 1.0);
-//            params.put("y", 50.5);
-//            params.put("image", base64Image);
-//            params.setUseJsonStreamer(true);
+
             params.put("data", jParam);
-            params.setUseJsonStreamer(true);
 
             client.post(reqUrl, params, new AsyncHttpResponseHandler() {
                 @Override
@@ -156,14 +163,13 @@ public class WritePostActivity extends Fragment {
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     // Successfully got a response
                     Log.d("onSuccess", "req success");
-                    for(int i = 0; i < headers.length; i++) {
+                    for (int i = 0; i < headers.length; i++) {
                         Log.i(headers[i].getName(), headers[i].getValue());
                     }
                 }
 
                 @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error)
-                {
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                     // Response failed :(
                     Log.d("onFailure", "req fail" + statusCode);
 //                    for(int i = 0; i < headers.length; i++) {
@@ -185,7 +191,7 @@ public class WritePostActivity extends Fragment {
                 public void onFinish() {
                     // Completed the request (either success or failure)
                 }
-            } );
+            });
         }
     };
 
@@ -193,22 +199,18 @@ public class WritePostActivity extends Fragment {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                slectePic = selectedImage;
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byte_arr = stream.toByteArray();
+            //                final Uri imageUri = data.getData();
+//                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+//                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//                slectePic = selectedImage;
+//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                byte[] byte_arr = stream.toByteArray();
 
-                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
-                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            base64ImageList.add("asdfasdfasdfasdfasdfasdf");
+            Log.d("asdf", "asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+//                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+//                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
 
         } else {
         }

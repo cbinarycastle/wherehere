@@ -22,5 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/common_full_open_on_phone"
-        android:layout_weight="0.48" />
+        android:layout_weight="0.48"
+        />
 </LinearLayout>
