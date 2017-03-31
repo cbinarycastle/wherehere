@@ -2,6 +2,8 @@ package kr.dsm.wherehere;
 
 import android.util.SparseArray;
 
+import kr.dsm.wherehere.dto.Map;
+
 /**
  * Created by BeINone on 2017-04-01.
  */

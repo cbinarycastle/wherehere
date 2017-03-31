@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -24,14 +25,15 @@ import cz.msebera.android.httpclient.Header;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    LinearLayout container = (LinearLayout) findViewById(R.id.container);
+    RelativeLayout container;
 
-    AnimationDrawable anim = (AnimationDrawable) container.getBackground();
+    AnimationDrawable anim;
 
     TextView registerBtn;
     EditText idInput;
     EditText psInput;
     Button loginBtn;
+    Intent intent;
 
     private String reqUrl = "http://192.168.20.209:8080/account.do";
     private AsyncHttpClient client;
@@ -55,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        container = (RelativeLayout) findViewById(R.id.container);
+        anim = (AnimationDrawable) container.getBackground();
+        
+        intent = new Intent(this, MainActivity.class);
 
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
@@ -93,6 +100,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for (int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    finish();
+                    startActivity(intent);
                 }
 
                 @Override

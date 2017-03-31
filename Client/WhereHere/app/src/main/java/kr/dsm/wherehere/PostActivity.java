@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import kr.dsm.wherehere.dto.Map;
+
 /**
  * Created by BeINone on 2017-04-01.
  */

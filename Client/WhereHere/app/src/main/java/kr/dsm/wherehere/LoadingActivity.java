@@ -24,7 +24,7 @@ public class LoadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        final Intent intent = new Intent(this, MainActivity.class);
+        final Intent intent = new Intent(this, LoginActivity.class);
 
         PermissionListener permissionListener = new PermissionListener() {
             @Override

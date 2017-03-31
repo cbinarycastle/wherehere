@@ -53,8 +53,8 @@ public class HttpResponseParser {
         for (int i = 0; i < rootJSONArray.length(); ++i) {
             JSONObject jsonObject = (JSONObject) rootJSONArray.get(i);
 
-            String id = jsonObject.getString("id");
-            int postCount = jsonObject.getInt("postnum");
+            String id =  jsonObject.getString("id");
+            int postCount = jsonObject.getInt("postcount");
 
             userList.add(new User(id, postCount));
         }
