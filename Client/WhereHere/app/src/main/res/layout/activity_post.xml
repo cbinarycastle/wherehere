@@ -1,33 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dmsbtn="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_post_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black" />
-
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_post_comment">
 
-    <HorizontalScrollView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_post_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_post_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_star_border_white_48dp"
+                    android:background="?attr/selectableItemBackground" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginBottom="16dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/tv_post_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <kr.dsm.wherehere.DMSButton
+        android:id="@+id/btn_post_comment"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:text="댓글"
+        dmsbtn:dmsbtn_backgroundColor="@android:color/white"
+        dmsbtn:dmsbtn_strokeColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_style="rectangle"
+        dmsbtn:dmsbtn_textColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_touchBackgroundColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_touchStrokeColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_touchTextColor="@android:color/white" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_post"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-    </HorizontalScrollView>
-
-    <TextView
-        android:id="@+id/tv_post_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</RelativeLayout>

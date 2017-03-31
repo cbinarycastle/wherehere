@@ -23,13 +23,11 @@ import android.widget.Spinner;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.Base64;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,7 +38,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static android.R.attr.bitmap;
 import static android.app.Activity.RESULT_OK;
 
 /**

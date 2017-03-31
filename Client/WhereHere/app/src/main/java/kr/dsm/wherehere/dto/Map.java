@@ -31,6 +31,18 @@ public class Map {
         this.unRecommend = unRecommend;
     }
 
+    public Map(int postNum, String content, String title, String writer, double x, double y,
+               int recommend, int unRecommend) {
+        this.postNum = postNum;
+        this.content = content;
+        this.title = title;
+        this.writer = writer;
+        this.x = x;
+        this.y = y;
+        this.recommend = recommend;
+        this.unRecommend = unRecommend;
+    }
+
     public int getPostNum() {
         return postNum;
     }

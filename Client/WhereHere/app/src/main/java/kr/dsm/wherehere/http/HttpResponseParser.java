@@ -33,15 +33,16 @@ public class HttpResponseParser {
             int recommend = mapJSONObject.getInt("recommend");
             int unRecommend = mapJSONObject.getInt("unrecommend");
 
-            List<String> images = new ArrayList<>();
-            JSONArray imageJSONArray = mapJSONObject.getJSONArray("image");
-            for (int imageIndex = 0; imageIndex < imageJSONArray.length(); imageIndex++) {
-                JSONObject imageJSONObject = imageJSONArray.getJSONObject(imageIndex);
-                images.add(imageJSONObject.getString("data"));
-            }
+//            List<String> images = new ArrayList<>();
+//            JSONArray imageJSONArray = mapJSONObject.getJSONArray("image");
+//            for (int imageIndex = 0; imageIndex < imageJSONArray.length(); imageIndex++) {
+//                JSONObject imageJSONObject = imageJSONArray.getJSONObject(imageIndex);
+//                images.add(imageJSONObject.getString("data"));
+//            }
 
-            mapSparseArray.append(postNum,
-                    new Map(postNum, content, title, writer, x, y, images, recommend, unRecommend));
+//            mapSparseArray.append(postNum,
+//                    new Map(postNum, content, title, writer, x, y, images, recommend, unRecommend));
+            mapSparseArray.append(postNum, new Map(postNum, content, title, writer, x, y, recommend, unRecommend));
         }
 
         return mapSparseArray;
@@ -76,13 +77,14 @@ public class HttpResponseParser {
             int recommend = mapJSONObject.getInt("recommend");
             int unRecommend = mapJSONObject.getInt("unrecommend");
 
-            List<String> images = new ArrayList<>();
-            JSONArray imageJSONArray = mapJSONObject.getJSONArray("image");
-            for (int imageIndex = 0; imageIndex < imageJSONArray.length(); imageIndex++) {
-                JSONObject imageJSONObject = imageJSONArray.getJSONObject(imageIndex);
-                images.add(imageJSONObject.getString("data"));
-            }
-            mapList.add(new Map(postNum, content, title, writer, x, y, images, recommend, unRecommend));
+//            List<String> images = new ArrayList<>();
+//            JSONArray imageJSONArray = new JSONArray(mapJSONObject.getString("image"));
+//            for (int imageIndex = 0; imageIndex < imageJSONArray.length(); imageIndex++) {
+//                JSONObject imageJSONObject = imageJSONArray.getJSONObject(imageIndex);
+//                images.add(imageJSONObject.getString("data"));
+//            }
+//            mapList.add(new Map(postNum, content, title, writer, x, y, images, recommend, unRecommend));
+            mapList.add(new Map(postNum, content, title, writer, x, y, recommend, unRecommend));
         }
         return mapList;
     }

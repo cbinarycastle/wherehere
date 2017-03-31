@@ -15,16 +15,13 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HttpResponse;
 import kr.dsm.wherehere.ListViewAdapter;
 import kr.dsm.wherehere.R;
 import kr.dsm.wherehere.dto.User;
-import kr.dsm.wherehere.http.HttpConst;
 import kr.dsm.wherehere.http.HttpResponseParser;
 
 /**

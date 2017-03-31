@@ -1,64 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dmset="http://schemas.android.com/apk/res-auto"
+    xmlns:dmsbtn="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:textSize="50dp"
-        android:lines="1"
-        android:hint="@string/hint" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/post"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lines="10"
-        android:background="@null"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:hint="이곳의 이름을 입력하세요" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <kr.dsm.wherehere.DMSEditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:id="@+id/linearLayout">
-            <Spinner
-                android:id="@+id/spinner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/hint"
+            android:lines="1"
+            android:textSize="24sp"
+            dmset:dmset_strokeColor="@android:color/darker_gray"
+            dmset:dmset_focusStrokeColor="@color/colorPrimary" />
+
+        <kr.dsm.wherehere.DMSEditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:hint="이곳의 설명을 입력하세요."
+            android:lines="10"
+            dmset:dmset_strokeColor="@android:color/darker_gray"
+            dmset:dmset_focusStrokeColor="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="44dp"
-                />
+                android:layout_centerInParent="true">
 
-            <Button
-                android:id="@+id/photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:text="사진" />
-            <Button
-                android:id="@+id/post"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/photo"
-                android:text="추가" />
-        </LinearLayout>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="44dp" />
 
-
-    </RelativeLayout>
+                <Button
+                    android:id="@+id/photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="사진" />
+            </LinearLayout>
 
 
-</LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <kr.dsm.wherehere.DMSButton
+        android:id="@+id/post"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="추가"
+        android:textColor="@android:color/white"
+        dmsbtn:dmsbtn_backgroundColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_strokeColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_style="rectangle"
+        dmsbtn:dmsbtn_textColor="@android:color/white"
+        dmsbtn:dmsbtn_touchBackgroundColor="@android:color/white"
+        dmsbtn:dmsbtn_touchStrokeColor="@color/colorPrimary"
+        dmsbtn:dmsbtn_touchTextColor="@color/colorPrimary" />
+
+</RelativeLayout>
