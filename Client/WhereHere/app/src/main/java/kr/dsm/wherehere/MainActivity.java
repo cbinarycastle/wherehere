@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             fragmentTransaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_map:
                     fragmentTransaction.replace(R.id.content, rankingFragment).commit();
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_ranking:
                     fragmentTransaction.replace(R.id.content, rankingFragment).commit();
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_review:
                     fragmentTransaction.replace(R.id.content, rankingFragment).commit();
                     return true;
             }
