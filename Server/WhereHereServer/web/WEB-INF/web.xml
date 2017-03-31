@@ -5,6 +5,14 @@
          version="3.1">
     <display-name>Apache-Axis</display-name>
     <servlet>
+        <servlet-name>AccountController</servlet-name>
+        <servlet-class>com.jinseong.soft.server.controller.AccountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountController</servlet-name>
+        <url-pattern>/account.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>GetInformController</servlet-name>
         <servlet-class>com.jinseong.soft.server.controller.GetInformController</servlet-class>
     </servlet>
