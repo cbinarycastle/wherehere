@@ -84,5 +84,6 @@ public class ListViewAdapter extends BaseAdapter {
         item.setDesc(desc);
 
         listViewItemList.add(item);
+        notifyDataSetChanged();
     }
 }

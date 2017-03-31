@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         anim = (AnimationDrawable) container.getBackground();
         anim.setEnterFadeDuration(6000);
         anim.setExitFadeDuration(2000);
-        
+
         intent = new Intent(this, MainActivity.class);
 
         getSupportActionBar().hide();
@@ -64,9 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginBtn.setOnClickListener(login);
         registerBtn.setOnClickListener(register);
-
-
-
     }
 
     TextView.OnClickListener register = new View.OnClickListener() {

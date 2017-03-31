@@ -49,6 +49,7 @@ public class RankingFragment extends Fragment {
 
         userRanking = new UserRanking();
         reviewRanking = new ReviewRanking();
+        userRanking2 = new UserRanking();
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -67,9 +68,9 @@ public class RankingFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new UserRanking(), "USER");
-        adapter.addFragment(new ReviewRanking(), "REVIEW");
-        adapter.addFragment(new ReviewRanking(), "THREE");
+        adapter.addFragment(userRanking, "USER");
+        adapter.addFragment(reviewRanking, "REVIEW");
+        adapter.addFragment(userRanking2, "THREE");
         viewPager.setAdapter(adapter);
     }
 
