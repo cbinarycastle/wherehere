@@ -12,13 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.Base64;
 import com.loopj.android.http.RequestParams;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,10 +37,16 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class WritePostActivity extends AppCompatActivity {
     private Button photoBtn;
     private Button postBtn;
-    private int RESULT_LOAD_IMG = 1;
-    private Bitmap slectePic;
-    private String reqUrl = "http://192.168.20.7:8080/writepost.do";
+    private EditText titleInput;
+    private EditText contentInput;
 
+    private String base64Image;
+
+    private int RESULT_LOAD_IMG = 1;
+
+    private Bitmap slectePic;
+
+    private String reqUrl = "http://192.168.20.7/writepost.do";
     private AsyncHttpClient client;
 
     RequestParams params = new RequestParams();
@@ -46,7 +55,7 @@ public class WritePostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AsyncHttpClient client = new AsyncHttpClient();
+        client = new AsyncHttpClient();
 
 
         photoBtn = (Button) findViewById(R.id.photo);
@@ -54,6 +63,9 @@ public class WritePostActivity extends AppCompatActivity {
 
         postBtn = (Button) findViewById(R.id.post);
         postBtn.setOnClickListener(postArticle);
+
+        titleInput = (EditText) findViewById(R.id.title);
+        contentInput = (EditText) findViewById(R.id.content);
 
         setContentView(R.layout.activity_write_post);
 
@@ -83,7 +95,16 @@ public class WritePostActivity extends AppCompatActivity {
 
     Button.OnClickListener postArticle = new View.OnClickListener() {
         public void onClick(View v) {
-            params.put("test", "momo");
+            String title = titleInput.getText().toString();
+            String content = contentInput.getText().toString();
+
+            params.put("title", title);
+            params.put("title", content);
+            params.put("writer", "test");
+            params.put("age", 19);
+            params.put("x", 1.0);
+            params.put("y", 50.5);
+            params.put("image", base64Image);
 
             client.post(reqUrl, params, new AsyncHttpResponseHandler() {
                 @Override
@@ -94,13 +115,20 @@ public class WritePostActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                     // Successfully got a response
+                    Log.d("onSuccess", "req success");
+                    for(int i = 0; i < headers.length; i++) {
+                        Log.i(headers[i].getName(), headers[i].getValue());
+                    }
                 }
 
                 @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable
-                        error)
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error)
                 {
                     // Response failed :(
+                    Log.d("onFailure", "req fail");
+                    for(int i = 0; i < headers.length; i++) {
+                        Log.i(headers[i].getName(), headers[i].getValue());
+                    }
                 }
 
                 @Override
@@ -130,6 +158,10 @@ public class WritePostActivity extends AppCompatActivity {
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 slectePic = selectedImage;
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byte_arr = stream.toByteArray();
+                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
