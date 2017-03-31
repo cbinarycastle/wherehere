@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_map:
                     fragmentTransaction.replace(R.id.content, mMapFragment).commit();
                     return true;
                 case R.id.navigation_ranking:
