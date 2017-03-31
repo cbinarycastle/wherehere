@@ -51,7 +51,7 @@ public class RankingFragment extends Fragment {
                     System.out.println(jsonObject.get("y"));
                     System.out.println(jsonObject.get("recommand"));
                     System.out.println(jsonObject.get("postnum"));
-
+                    System.out.println(jsonObject.get("unrecommand"));
                 }catch (Exception j){
                     j.printStackTrace();
                 }
