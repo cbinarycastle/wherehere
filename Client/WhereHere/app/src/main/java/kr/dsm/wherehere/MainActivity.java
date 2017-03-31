@@ -52,15 +52,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fragmentManager = getSupportFragmentManager();
-
-        rankingFragment = new RankingFragment();
-        setContentView(R.layout.activity_main);
-
-        String str = "[{'username':'hojak99', 'message' : 'hi mesg'}]";
-
-
-        fragmentManager.beginTransaction().replace(R.id.content, new RankingFragment()).commit();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
