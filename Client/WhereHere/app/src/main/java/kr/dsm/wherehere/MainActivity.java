@@ -11,6 +11,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 10;
+
     private FragmentManager fragmentManager;
     private MapFragment mMapFragment;
     private RankingFragment rankingFragment;
@@ -42,8 +44,16 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_map:
-                    fragmentTransaction.replace(R.id.content, mMapFragment).commit();
-                    return true;
+//                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+//                            == PackageManager.PERMISSION_GRANTED) {
+                        fragmentTransaction.replace(R.id.content, mMapFragment).commit();
+                        return true;
+//                    } else {
+//                        ActivityCompat.requestPermissions(MainActivity.this,
+//                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//                        break;
+//                    }
                 case R.id.navigation_ranking:
                     fragmentTransaction.replace(R.id.content, rankingFragment).commit();
                     return true;

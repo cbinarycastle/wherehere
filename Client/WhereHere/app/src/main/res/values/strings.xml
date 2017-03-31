@@ -4,5 +4,9 @@
     <string name="title_ranking">순위</string>
     <string name="title_review">리뷰</string>
 
+    <string name="need_location_permission">지도를 사용하려면 위치 권한이 필요합니다.</string>
     <string name="map_load_error">오류로 인해 장소를 불러오지 못했습니다.</string>
+    <string name="map_get_current_location_error">현재 위치를 불러오지 못했습니다.</string>
+
+    <string name="extra_postnum">POST_NUM</string>
 </resources>

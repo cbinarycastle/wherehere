@@ -29,7 +29,7 @@ public class LoadingActivity extends Activity {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                final Handler handler = new Handler(){
+                final Handler handler = new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
                         startActivity(intent);
@@ -47,7 +47,7 @@ public class LoadingActivity extends Activity {
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(LoadingActivity.this, "권한거부\n"+ deniedPermissions.toString(),
+                Toast.makeText(LoadingActivity.this, "권한거부\n" + deniedPermissions.toString(),
                         Toast.LENGTH_SHORT).show();
             }
         };
@@ -63,5 +63,5 @@ public class LoadingActivity extends Activity {
                 ).check();
 
         setContentView(R.layout.activity_loading);
-        }
+    }
 }

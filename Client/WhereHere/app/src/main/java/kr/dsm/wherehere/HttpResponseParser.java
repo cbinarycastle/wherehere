@@ -1,5 +1,7 @@
 package kr.dsm.wherehere;
 
+import android.util.SparseArray;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,8 +15,8 @@ import java.util.List;
 
 public class HttpResponseParser {
 
-    public static List<Map> parseLoadPlaceJSON(JSONArray rootJSONArray) throws JSONException {
-        List<Map> mapList = new ArrayList<>();
+    public static SparseArray<Map> parseLoadPlaceJSON(JSONArray rootJSONArray) throws JSONException {
+        SparseArray<Map> mapSparseArray = new SparseArray<>();
 
         for (int index = 0; index < rootJSONArray.length(); index++) {
             JSONObject mapJSONObject = rootJSONArray.getJSONObject(index);
@@ -25,14 +27,21 @@ public class HttpResponseParser {
             String writer = mapJSONObject.getString("writer");
             double x = mapJSONObject.getDouble("x");
             double y = mapJSONObject.getDouble("y");
-            String image = mapJSONObject.getString("image");
             int recommend = mapJSONObject.getInt("recommend");
             int unRecommend = mapJSONObject.getInt("unrecommend");
 
-            mapList.add(new Map(postNum, content, title, writer, x, y, image, recommend, unRecommend));
+            List<String> images = new ArrayList<>();
+            JSONArray imageJSONArray = mapJSONObject.getJSONArray("image");
+            for (int imageIndex = 0; imageIndex < imageJSONArray.length(); imageIndex++) {
+                JSONObject imageJSONObject = imageJSONArray.getJSONObject(imageIndex);
+                images.add(imageJSONObject.getString("data"));
+            }
+
+            mapSparseArray.append(postNum,
+                    new Map(postNum, content, title, writer, x, y, images, recommend, unRecommend));
         }
 
-        return mapList;
+        return mapSparseArray;
     }
 
 }

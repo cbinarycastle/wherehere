@@ -1,6 +1,7 @@
 package kr.dsm.wherehere;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +23,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -61,13 +61,11 @@ public class MapFragment extends Fragment {
 
                     @Override
                     public void onConnectionSuspended(int i) {
-
                     }
                 })
                 .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
                     }
                 })
                 .addApi(LocationServices.API)
@@ -94,8 +92,7 @@ public class MapFragment extends Fragment {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     initializeMap();
                 } else {
-                    Toast.makeText(getContext(), "지도를 사용하기 위해서는 위치 권한이 필요합니다.",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.need_location_permission, Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -146,15 +143,22 @@ public class MapFragment extends Fragment {
 
     private void initializeMap() {
         if (mGoogleMap != null) {
-            // check permission
+            // show My Location button
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                     == PackageManager.PERMISSION_GRANTED) {
-                // show My Location button
                 mGoogleMap.setMyLocationEnabled(true);
             } else {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
+//            try {
+//                mGoogleMap.setMyLocationEnabled(true);
+//            } catch (SecurityException e) {
+//                e.printStackTrace();
+//                Toast.makeText(getContext(), R.string.need_location_permission, Toast.LENGTH_SHORT).show();
+//                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//            }
 
             if (mAsyncHttpClient != null) {
                 mAsyncHttpClient.get(HttpConst.SERVER_URL + "/getpost.do", new JsonHttpResponseHandler() {
@@ -162,8 +166,9 @@ public class MapFragment extends Fragment {
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                         super.onSuccess(statusCode, headers, response);
                         try {
-                            List<Map> mapList = HttpResponseParser.parseLoadPlaceJSON(response);
-                            drawMarkers(mapList);
+                            SparseArray<Map> mapSparseArray = HttpResponseParser.parseLoadPlaceJSON(response);
+                            MapStorage.setMapSparseArray(mapSparseArray);
+                            drawMarkers();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(), R.string.map_load_error, Toast.LENGTH_SHORT).show();
@@ -177,17 +182,28 @@ public class MapFragment extends Fragment {
                     }
                 });
             }
+
+            mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    Intent intent = new Intent(getActivity(), PostActivity.class);
+                    intent.putExtra(getString(R.string.extra_postnum), (int) marker.getTag());
+                    getActivity().startActivity(intent);
+                }
+            });
         }
     }
 
-    private void drawMarkers(List<Map> mapList) {
-        for (int index = 0; index < mapList.size(); index++) {
-            Map map = mapList.get(index);
-            Log.d("testLog", map.toString());
-            mGoogleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(map.getX(), map.getY()))
-                    .title(map.getTitle())
-                    .snippet(map.getWriter()));
+    private void drawMarkers() {
+        if (MapStorage.getMapSparseArray() != null) {
+            for (int index = 0; index < MapStorage.getMapSparseArray().size(); index++) {
+                Map map = MapStorage.getMapSparseArray().get(index);
+                mGoogleMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(map.getX(), map.getY()))
+                        .title(map.getTitle())
+                        .snippet(map.getWriter()))
+                        .setTag(map.getPostNum());
+            }
         }
     }
 
@@ -198,11 +214,27 @@ public class MapFragment extends Fragment {
             if (lastLocation != null) {
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), 16.0f));
+            } else {
+                Toast.makeText(getContext(), R.string.map_get_current_location_error, Toast.LENGTH_SHORT).show();
             }
         } else {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
+//        try {
+//            Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+//            if (lastLocation != null) {
+//                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+//                        new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()), 16.0f));
+//            } else {
+//                Toast.makeText(getContext(), R.string.map_get_current_location_error, Toast.LENGTH_SHORT).show();
+//            }
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//            Toast.makeText(getContext(), R.string.need_location_permission, Toast.LENGTH_SHORT).show();
+//            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//        }
     }
 
 }
