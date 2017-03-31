@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.dsm.wherehere.dto.Map;
+import kr.dsm.wherehere.dto.User;
 
 /**
  * Created by BeINone on 2017-03-31.
@@ -46,9 +47,17 @@ public class HttpResponseParser {
         return mapSparseArray;
     }
 
-    public static void parseLoadUserRankingJSON(JSONArray rootJSONArray) throws JSONException {
-        JSONObject jsonObject = (JSONObject) rootJSONArray.get(0);
+    public static List<User> parseLoadUserRankingJSON(JSONArray rootJSONArray) throws JSONException {
+        List<User> userList = new ArrayList<>();
 
+        for (int i = 0; i < rootJSONArray.length(); ++i) {
+            JSONObject jsonObject = (JSONObject) rootJSONArray.get(i);
+
+            String id = jsonObject.getString("id");
+            int postCount = jsonObject.getInt("postnum");
+
+            userList.add(new User(id, postCount));
+        }
+        return userList;
     }
-
 }

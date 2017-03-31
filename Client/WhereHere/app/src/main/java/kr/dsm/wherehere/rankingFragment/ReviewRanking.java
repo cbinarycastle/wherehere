@@ -23,9 +23,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 import kr.dsm.wherehere.R;
+import kr.dsm.wherehere.dto.User;
+import kr.dsm.wherehere.http.HttpResponseParser;
 
 public class ReviewRanking extends Fragment {
     //MyActivity 시작
@@ -33,6 +44,7 @@ public class ReviewRanking extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<MyData> myDataset;
+    private AsyncHttpClient mHttpClient;
 
     @Nullable
     @Override
@@ -42,8 +54,27 @@ public class ReviewRanking extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
+        RequestParams params = new RequestParams();
+        params.put("purpose", "ranking");
+
+        mHttpClient = new AsyncHttpClient();
+        mHttpClient.post("http://192.168.20.209:8080/accont.do", params, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                    List<User> userList;
+                    userList = HttpResponseParser.parseLoadUserRankingJSON(response);
+                }catch (Exception j){
+                    j.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable error) {
+                System.out.println("Http get Fail");
+            }
+        });
+
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
