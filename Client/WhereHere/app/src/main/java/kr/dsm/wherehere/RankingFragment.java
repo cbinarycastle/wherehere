@@ -39,7 +39,6 @@ public class RankingFragment extends Fragment {
 
     private UserRanking userRanking;
     private ReviewRanking reviewRanking;
-    private UserRanking userRanking2;
 
     @Nullable
     @Override
@@ -49,7 +48,6 @@ public class RankingFragment extends Fragment {
 
         userRanking = new UserRanking();
         reviewRanking = new ReviewRanking();
-        userRanking2 = new UserRanking();
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -70,7 +68,6 @@ public class RankingFragment extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(userRanking, "USER");
         adapter.addFragment(reviewRanking, "REVIEW");
-        adapter.addFragment(userRanking2, "THREE");
         viewPager.setAdapter(adapter);
     }
 
