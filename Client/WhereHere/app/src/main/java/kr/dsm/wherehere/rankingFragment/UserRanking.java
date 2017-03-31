@@ -33,7 +33,6 @@ public class UserRanking extends Fragment{
 
         View view = inflater.inflate(R.layout.activity_user_ranking, null);
 
-
         ListView listView;
         ListViewAdapter adapter;
 

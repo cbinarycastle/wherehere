@@ -33,8 +33,7 @@ public class RankingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_ranking, null);
+        View view = inflater.inflate(R.layout.fragment_ranking, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         userRanking = new UserRanking();
