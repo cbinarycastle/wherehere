@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager.beginTransaction().replace(R.id.content, mMapFragment).commit();
 
-        RequestParams params = new RequestParams("single", "value");
+        RequestParams params = new RequestParams("purpose", "ranking");
 
         mHttpClient = new AsyncHttpClient();
-        mHttpClient.get("http://192.168.20.7:8080/", params, new AsyncHttpResponseHandler() {
+        mHttpClient.get("http://192.168.20.7:8080/getinfo.do", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                System.out.println("Http get Success");
+                System.out.println("Http get Success  :  "+new String(responseBody));
             }
 
             @Override
@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fragmentManager = getSupportFragmentManager();
+
+        rankingFragment = new RankingFragment();
+        setContentView(R.layout.activity_main);
+
+        String str = "[{'username':'hojak99', 'message' : 'hi mesg'}]";
+
+
+        fragmentManager.beginTransaction().replace(R.id.content, new RankingFragment()).commit();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
