@@ -17,6 +17,7 @@ import android.view.Window;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.dsm.wherehere.rankingFragment.ReviewRanking;
 import kr.dsm.wherehere.rankingFragment.UserRanking;
 
 public class RankingFragment extends Fragment {
@@ -26,7 +27,7 @@ public class RankingFragment extends Fragment {
     private ViewPager viewPager;
 
     private UserRanking userRanking;
-    private UserRanking userRanking1;
+    private ReviewRanking reviewRanking;
     private UserRanking userRanking2;
 
     @Nullable
@@ -37,7 +38,7 @@ public class RankingFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         userRanking = new UserRanking();
-        userRanking1 = new UserRanking();
+        reviewRanking = new ReviewRanking();
         userRanking2 = new UserRanking();
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -56,9 +57,9 @@ public class RankingFragment extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(userRanking, "USER");
-        adapter.addFragment(userRanking1, "TWO");
+        adapter.addFragment(reviewRanking, "REVIEW");
         adapter.addFragment(userRanking2, "THREE");
         viewPager.setAdapter(adapter);
     }
