@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         mMapFragment = new MapFragment();
-        rankingFragment = new RankingFragment();
         writePostActivity = new WritePostFragment();
 
         fragmentManager.beginTransaction().replace(R.id.content, mMapFragment).commit();
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content, mMapFragment).commit();
                     return true;
                 case R.id.navigation_ranking:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
+                    fragmentTransaction.replace(R.id.content, new RankingFragment()).commit();
                     return true;
                 case R.id.navigation_review:
                     fragmentTransaction.replace(R.id.content, writePostActivity).commit();
