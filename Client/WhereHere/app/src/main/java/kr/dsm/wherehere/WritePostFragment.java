@@ -210,7 +210,6 @@ public class WritePostFragment extends Fragment {
                 byte[] byte_arr = stream.toByteArray();
 
                 base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
                 Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
                 base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             } catch (FileNotFoundException e) {
