@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -41,29 +42,17 @@ public class LoginActivity extends AppCompatActivity {
     RequestParams params = new RequestParams();
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (anim != null && !anim.isRunning())
-            anim.start();
-    }
-
-    // Stopping animation:- stop the animation on onPause.
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (anim != null && anim.isRunning())
-            anim.stop();
-    }
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
         container = (RelativeLayout) findViewById(R.id.container);
         anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(6000);
+        anim.setExitFadeDuration(2000);
         
         intent = new Intent(this, MainActivity.class);
 
-        setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
 
         client = new AsyncHttpClient();
@@ -74,11 +63,10 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn = (TextView) findViewById(R.id.register);
 
         loginBtn.setOnClickListener(login);
-        registerBtn.setOnClickListener(login);
+        registerBtn.setOnClickListener(register);
 
 
-        anim.setEnterFadeDuration(6000);
-        anim.setExitFadeDuration(2000);
+
     }
 
     TextView.OnClickListener register = new View.OnClickListener() {
@@ -100,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for (int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
-                    finish();
-                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "회원가입이 되었어요", Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
@@ -111,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for(int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    Toast.makeText(getApplicationContext(), "회원가입에 실패했어요 ㅠㅠ", Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
@@ -150,6 +140,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for (int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    finish();
+                    startActivity(intent);
                 }
 
                 @Override
@@ -159,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    for(int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    Toast.makeText(getApplicationContext(), "로그인에 실패했어요 ㅠㅠ", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -178,4 +171,19 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    // Stopping animation:- stop the animation on onPause.
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
+    }
 }
