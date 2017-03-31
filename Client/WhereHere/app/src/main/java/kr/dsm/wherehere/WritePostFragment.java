@@ -2,6 +2,8 @@ package kr.dsm.wherehere;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,11 +19,15 @@ import android.widget.Spinner;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.Base64;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,18 +188,34 @@ public class WritePostFragment extends Fragment {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            //                final Uri imageUri = data.getData();
-//                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
-//                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-//                slectePic = selectedImage;
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                byte[] byte_arr = stream.toByteArray();
+////                            final Uri imageUri = data.getData();
+////                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+////                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+////                slectePic = selectedImage;
+////                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+////                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+////                byte[] byte_arr = stream.toByteArray();
+//
+//            base64ImageList.add("asdfasdfasdfasdfasdfasdf");
+//            Log.d("asdf", "asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+////                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+////                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                slectePic = selectedImage;
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byte_arr = stream.toByteArray();
 
-            base64ImageList.add("asdfasdfasdfasdfasdfasdf");
-            Log.d("asdf", "asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
-//                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-//                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
         } else {
         }
