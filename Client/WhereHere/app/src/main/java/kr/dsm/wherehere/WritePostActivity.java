@@ -7,12 +7,17 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -34,7 +39,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
  * Created by dsm_024 on 2017-03-31.
  */
 
-public class WritePostActivity extends AppCompatActivity {
+public class WritePostActivity extends Fragment {
     private Button photoBtn;
     private Button postBtn;
     private EditText titleInput;
@@ -48,27 +53,27 @@ public class WritePostActivity extends AppCompatActivity {
 
     private String reqUrl = "http://192.168.20.7/writepost.do";
     private AsyncHttpClient client;
+    private View view;
 
     RequestParams params = new RequestParams();
 
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.activity_write_post, null);
+
         client = new AsyncHttpClient();
 
-
-        photoBtn = (Button) findViewById(R.id.photo);
+        photoBtn = (Button) view.findViewById(R.id.photo);
         photoBtn.setOnClickListener(showGallery);
 
-        postBtn = (Button) findViewById(R.id.post);
+        postBtn = (Button) view.findViewById(R.id.post);
         postBtn.setOnClickListener(postArticle);
 
-        titleInput = (EditText) findViewById(R.id.title);
-        contentInput = (EditText) findViewById(R.id.content);
-
-        setContentView(R.layout.activity_write_post);
-
+        titleInput = (EditText) view.findViewById(R.id.title);
+        contentInput = (EditText) view.findViewById(R.id.content);
 
 //        fragmentManager = getSupportFragmentManager();
 //
@@ -79,6 +84,8 @@ public class WritePostActivity extends AppCompatActivity {
 //
 //        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 //        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        return view;
     }
 
     Button.OnClickListener showGallery = new View.OnClickListener() {
@@ -150,12 +157,12 @@ public class WritePostActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onActivityResult(int reqCode, int resultCode, Intent data) {
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_LOAD_IMG) {
             try {
                 final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 slectePic = selectedImage;
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();

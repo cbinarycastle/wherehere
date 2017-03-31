@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content, rankingFragment).commit();
                     return true;
                 case R.id.navigation_review:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
+                    fragmentTransaction.replace(R.id.content, new WritePostActivity()).commit();
                     return true;
             }
             return false;
