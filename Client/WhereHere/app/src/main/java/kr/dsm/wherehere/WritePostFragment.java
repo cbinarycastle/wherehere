@@ -1,10 +1,14 @@
 package kr.dsm.wherehere;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -47,6 +51,7 @@ public class WritePostFragment extends Fragment {
     private EditText contentInput;
 
     private String base64Image;
+    private InputStream inputStream;
     List<File> fileList = new ArrayList<File>();
 
 
@@ -60,7 +65,7 @@ public class WritePostFragment extends Fragment {
     private Spinner spinner;
 
 
-    RequestParams params = new RequestParams();
+    RequestParams  params = new RequestParams ();
 
 
     @Nullable
@@ -125,22 +130,23 @@ public class WritePostFragment extends Fragment {
                 jParam.put("age", 19);
                 jParam.put("x", 37.886008);
                 jParam.put("y", 127.739903);
-                JSONArray imageArr = new JSONArray();
-                for (File file : fileList) {
-                    JSONObject temp = new JSONObject();
-                    try {
-                        temp.put("data", file);
-                        imageArr.put(temp);
-                    } catch (Exception e) {
-
-                    }
-                }
-                jParam.put("image", imageArr);
-
+//                JSONArray imageArr = new JSONArray();
+//                for (File file : fileList) {
+//                    JSONObject temp = new JSONObject();
+//                    try {
+//                        temp.put("data", file, "image.jpg");
+//                        temp.put
+//                        imageArr.put(temp);
+//                    } catch (Exception e) {
+//
+//                    }
+//                }
+//                RequestParams imageParam = new RequestParams();
+//                imageParam.put("image", inputStream, "image.jpg");
+          //      jParam.put("image", base64Image);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
-
             params.put("data", jParam);
 
             client.post(reqUrl, params, new AsyncHttpResponseHandler() {
@@ -189,34 +195,56 @@ public class WritePostFragment extends Fragment {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-////                            final Uri imageUri = data.getData();
-////                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
-////                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-////                slectePic = selectedImage;
-////                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-////                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
-////                byte[] byte_arr = stream.toByteArray();
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                slectePic = selectedImage;
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byte_arr = stream.toByteArray();
+
+//                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+//                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+//                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+//                            final Uri imageUri = data.getData();
+//                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+//                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//                slectePic = selectedImage;
+//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                byte[] byte_arr = stream.toByteArray();
 //
 //            base64ImageList.add("asdfasdfasdfasdfasdfasdf");
 //            Log.d("asdf", "asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
 ////                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
 ////                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
-            try {
-                File file = new File("image.jpg");
-                OutputStream outStream = new FileOutputStream(file);
+//            try {
+//
+//                final Uri imageUri = data.getData();
+//                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+//                inputStream = imageStream;
+//                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//                //    String currImageURI = data.getData();
+////                Uri selectedImageUri = data.getData();
+////                imagepath = getPath(selectedImageUri);
+//                Uri selectedImageUri = data.getData();
+//                File imageFile = new File(getPath(selectedImageUri));
+//                fileList.add(imageFile);
+//
+//                try{
+//                  //  selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+//                }catch (Exception e) {
+//                    Log.d("image error", "error");
+//                    e.printStackTrace();
+//                }
 
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
 
-                try{
-                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-                }catch (Exception e) {
-
-                }
-
-
-                  fileList.add(file);
+                //  fileList.add(file);
 //                slectePic = selectedImage;
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -227,12 +255,25 @@ public class WritePostFragment extends Fragment {
 //                //Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
 //                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
 //                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
 
         } else {
         }
+    }
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+        if( cursor != null ){
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(projection[0]);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+            return cursor.getString(column_index);
+        }
+        return uri.getPath();
     }
 }
 
