@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
         container = (RelativeLayout) findViewById(R.id.container);
         anim = (AnimationDrawable) container.getBackground();
-        
+
         intent = new Intent(this, MainActivity.class);
 
         setContentView(R.layout.activity_login);

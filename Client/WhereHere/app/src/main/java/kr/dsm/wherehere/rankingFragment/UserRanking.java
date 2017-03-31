@@ -41,8 +41,7 @@ public class UserRanking extends Fragment{
         View view = inflater.inflate(R.layout.activity_user_ranking, null);
 
         ListView listView;
-        ListViewAdapter adapter;
-
+        final ListViewAdapter adapter;
         adapter = new ListViewAdapter();
 
         listView = (ListView) view.findViewById(R.id.listview1);
@@ -57,7 +56,16 @@ public class UserRanking extends Fragment{
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try {
                     userList = HttpResponseParser.parseLoadUserRankingJSON(response);
-                    System.out.println(userList.get(0).getUserId());
+
+                    if(userList != null){
+                        for(int i=0; i< userList.size(); ++i) {
+                            adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
+                                    userList.get(i).getUserId(),"게시글 : "+userList.get(i).getPostCount());
+
+                            System.out.println("asdasd");
+                        }
+                    }
+
                 }catch (JSONException j){
                     j.printStackTrace();
                 }
@@ -69,16 +77,8 @@ public class UserRanking extends Fragment{
             }
         });
 
-        if(userList != null){
-            for(int i=0; i< userList.size(); ++i) {
-                listAdd(adapter, R.drawable.user, userList.get(i).getUserId(), userList.get(i).getPostCount());
-            }
-        }
-
         return view;
     }
 
-    public void listAdd(ListViewAdapter adapter, int icon, String id, int count){
-        adapter.addItem(ContextCompat.getDrawable(getContext(), icon), id,"게시글 : "+count);
-    }
+
 }
