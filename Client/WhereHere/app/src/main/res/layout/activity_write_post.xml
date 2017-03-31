@@ -11,12 +11,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
-        android:hint="이곳의 이름을 입력하세요" />
+        android:textSize="50dp"
+        android:lines="1"
+        android:hint="@string/hint" />
 
     <EditText
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:lines="10"
+        android:background="@null"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
