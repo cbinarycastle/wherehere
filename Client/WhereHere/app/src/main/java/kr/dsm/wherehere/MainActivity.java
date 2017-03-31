@@ -9,23 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import cz.msebera.android.httpclient.Header;
-
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private MapFragment mMapFragment;
     private RankingFragment rankingFragment;
-    private WritePostActivity writePostActivity;
+    private WritePostFragment writePostActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +26,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         mMapFragment = new MapFragment();
-        rankingFragment = new RankingFragment();
-        writePostActivity = new WritePostActivity();
+        writePostActivity = new WritePostFragment();
 
         fragmentManager.beginTransaction().replace(R.id.content, mMapFragment).commit();
-
-        fragmentManager = getSupportFragmentManager();
-
-        rankingFragment = new RankingFragment();
-        setContentView(R.layout.activity_main);
-
-        fragmentManager.beginTransaction().replace(R.id.content, new RankingFragment()).commit();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -63,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content, mMapFragment).commit();
                     return true;
                 case R.id.navigation_ranking:
-                    fragmentTransaction.replace(R.id.content, rankingFragment).commit();
+                    fragmentTransaction.replace(R.id.content, new RankingFragment()).commit();
                     return true;
                 case R.id.navigation_review:
                     fragmentTransaction.replace(R.id.content, writePostActivity).commit();

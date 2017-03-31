@@ -3,5 +3,6 @@
     <string name="title_map">지도</string>
     <string name="title_ranking">순위</string>
     <string name="title_review">리뷰</string>
+    <string name="map_load_error">오류로 인해 장소를 불러오지 못했습니다.</string>
     <string name="hint"><font size="20">이곳의 이름을 입력하세요.</font></string>
 </resources>

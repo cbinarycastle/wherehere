@@ -1,68 +1,94 @@
 package kr.dsm.wherehere;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.Window;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import cz.msebera.android.httpclient.Header;
-
-/**
- * Created by hojak on 2017-03-31.
- */
+import kr.dsm.wherehere.rankingFragment.UserRanking;
 
 public class RankingFragment extends Fragment {
 
-    private AsyncHttpClient mHttpClient;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    private UserRanking userRanking;
+    private UserRanking userRanking1;
+    private UserRanking userRanking2;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_ranking, null);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
-        TextView textView = (TextView) view.findViewById(R.id.textview);
-        textView.setText("Hi");
+        userRanking = new UserRanking();
+        userRanking1 = new UserRanking();
+        userRanking2 = new UserRanking();
 
-        RequestParams params = new RequestParams();
-        params.put("purpose", "ranking");
-        params.put("postnum", "2");
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
-        mHttpClient = new AsyncHttpClient();
-        mHttpClient.get("http://192.168.20.7:8080/getinfo.do", params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                try {
-                    JSONObject jsonObject = (JSONObject) response.get(0);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-                    System.out.println(jsonObject.get("content"));
-                    System.out.println(jsonObject.get("title"));
-                    System.out.println(jsonObject.get("writer"));
-                    System.out.println(jsonObject.get("x"));
-                    System.out.println(jsonObject.get("y"));
-                    System.out.println(jsonObject.get("recommand"));
-                    System.out.println(jsonObject.get("postnum"));
-                    System.out.println(jsonObject.get("unrecommand"));
-                }catch (Exception j){
-                    j.printStackTrace();
-                }
-            }
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String res, Throwable error) {
-                System.out.println("Http get Fail");
-            }
-        });
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter((getActivity()).getSupportFragmentManager());
+        adapter.addFragment(userRanking, "USER");
+        adapter.addFragment(userRanking1, "TWO");
+        adapter.addFragment(userRanking2, "THREE");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }
