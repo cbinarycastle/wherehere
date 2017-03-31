@@ -32,6 +32,9 @@ import org.json.JSONException;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import kr.dsm.wherehere.dto.Map;
+import kr.dsm.wherehere.http.HttpConst;
+import kr.dsm.wherehere.http.HttpResponseParser;
 
 /**
  * Created by BeINone on 2017-03-31.

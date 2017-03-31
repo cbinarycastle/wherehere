@@ -1,157 +1,124 @@
 package kr.dsm.wherehere.rankingFragment;
 
-import android.media.Image;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import cz.msebera.android.httpclient.Header;
-import kr.dsm.wherehere.ListViewAdapter;
-import kr.dsm.wherehere.R;
-
 /**
  * Created by hojak on 2017-04-01.
  */
 
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import kr.dsm.wherehere.R;
+
 public class ReviewRanking extends Fragment {
-    //DATA parsing 관련
-    String url = "http://pho901121.cafe24.com/login/db_get_notice_posts.php";
-    private static final String TAG_RESULTS = "posts";
-    private static final String TAG_WRITER = "writer";
-    private static final String TAG_TITLE = "title";
-    private static final String TAG_DATE = "regist_day";
-    private static final String TAG_CONTENT = "content";
-    JSONArray posts = null;
-    ArrayList<HashMap<String, String>> noticeList;
-    //UI 관련
-    private RecyclerView rv;
-    private LinearLayoutManager mLinearLayoutManager;
+    //MyActivity 시작
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<MyData> myDataset;
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_recyclerview, container, false);
-        noticeList = new ArrayList<HashMap<String, String>>();
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        rv = (RecyclerView) view.findViewById(R.id.rv);
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(mLinearLayoutManager);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-/*
-        //폰 내 db와 연결하여 uid 얻어와 보내기 - Fragment 이기 때문에 context가 getActivity()
-        helper = new DBhelper(getActivity(), "users2.db",null,DBhelper.DB_VER);
-        url += "?uid=" + helper.getId(getActivity());
-        Log.e("getuid: ", helper.getId(getActivity()));
-*/
+        View view = inflater.inflate(R.layout.activity_review_ranking, null);
 
-        getData(url);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        myDataset = new ArrayList<>();
+        mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        myDataset.add(new MyData("#InsideOut",R.mipmap.insideout));
+        myDataset.add(new MyData("#Mini",R.mipmap.mini));
+        myDataset.add(new MyData("#ToyStroy",R.mipmap.toystory));
 
         return view;
     }
+}
 
-    /**
-     * JSON 파싱 메소드
-     **/
-    public void getData(String url) {
-        class GetDataJSON extends AsyncTask<String, Void, String> {
-            @Override
-            protected String doInBackground(String... params) {
-                //JSON 받아온다.
-                String uri = params[0];
-                BufferedReader br = null;
-                try {
-                    URL url = new URL(uri);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    StringBuilder sb = new StringBuilder();
+class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private ArrayList<MyData> mDataset;
 
-                    br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public ImageView mImageView;
+        public TextView mTextView;
 
-                    String json;
-                    while ((json = br.readLine()) != null) {
-                        sb.append(json + "\n");
-                    }
-                    return sb.toString().trim();
-                } catch (Exception e) {
-                    return null;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(String myJSON) {
-                makeList(myJSON); //리스트를 보여줌
-            }
+        public ViewHolder(View view) {
+            super(view);
+            mImageView = (ImageView)view.findViewById(R.id.image);
+            mTextView = (TextView)view.findViewById(R.id.textview);
         }
-        GetDataJSON g = new GetDataJSON();
-        g.execute(url);
     }
 
-    /**
-     * JSON -> LIST 가공 메소드
-     **/
-    public void makeList(String myJSON) {
-        try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            posts = jsonObj.getJSONArray(TAG_RESULTS);
-            for (int i = 0; i < posts.length(); i++) {
-                //JSON에서 각각의 요소를 뽑아옴
-                JSONObject c = posts.getJSONObject(i);
-                String title = c.getString(TAG_TITLE);
-                String writer = c.getString(TAG_WRITER);
-                String date = c.getString(TAG_DATE);
-                String content = c.getString(TAG_CONTENT);
-                if (content.length() > 50) {
-                    content = content.substring(0, 50) + "..."; //50자 자르고 ... 붙이기
-                }
-                if (title.length() > 16) {
-                    title = title.substring(0, 16) + "..."; //18자 자르고 ... 붙이기
-                }
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public MyAdapter(ArrayList<MyData> myDataset) {
+        mDataset = myDataset;
+    }
 
-                //HashMap에 붙이기
-                HashMap<String, String> posts = new HashMap<String, String>();
-                posts.put(TAG_TITLE, title);
-                posts.put(TAG_WRITER, writer);
-                posts.put(TAG_DATE, date);
-                posts.put(TAG_CONTENT, content);
+    // Create new views (invoked by the layout manager)
+    @Override
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                   int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.activity_recycleview, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
 
-                //ArrayList에 HashMap 붙이기
-                noticeList.add(posts);
-            }
-            //카드 리스트뷰 어댑터에 연결
-            ReviewAdapter adapter = new ReviewAdapter(getActivity(), noticeList);
-            Log.e("onCreate[noticeList]", "" + noticeList.size());
-            rv.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        holder.mTextView.setText(mDataset.get(position).text);
+        holder.mImageView.setImageResource(mDataset.get(position).img);
+    }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mDataset.size();
+    }
+}
+
+class MyData{
+    public String text;
+    public int img;
+    public MyData(String text, int img){
+        this.text = text;
+        this.img = img;
     }
 }

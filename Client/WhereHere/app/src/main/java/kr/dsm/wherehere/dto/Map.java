@@ -1,4 +1,4 @@
-package kr.dsm.wherehere;
+package kr.dsm.wherehere.dto;
 
 /**
  * Created by BeINone on 2017-03-31.
