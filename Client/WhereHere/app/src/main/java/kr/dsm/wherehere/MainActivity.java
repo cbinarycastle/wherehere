@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,12 +27,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+
         fragmentManager = getSupportFragmentManager();
 
         mMapFragment = new MapFragment();
         rankingFragment = new RankingFragment();
 
-        fragmentManager.beginTransaction().replace(R.id.content, rankingFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content, mMapFragment).commit();
 
         RequestParams params = new RequestParams("single", "value");
 
