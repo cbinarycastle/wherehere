@@ -1,4 +1,4 @@
-package kr.dsm.wherehere;
+package kr.dsm.wherehere.dto;
 
 import java.util.List;
 

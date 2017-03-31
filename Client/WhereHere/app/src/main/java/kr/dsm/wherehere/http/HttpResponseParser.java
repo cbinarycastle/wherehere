@@ -1,4 +1,4 @@
-package kr.dsm.wherehere;
+package kr.dsm.wherehere.http;
 
 import android.util.SparseArray;
 
@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kr.dsm.wherehere.dto.Map;
 
 /**
  * Created by BeINone on 2017-03-31.
@@ -42,6 +44,11 @@ public class HttpResponseParser {
         }
 
         return mapSparseArray;
+    }
+
+    public static void parseLoadUserRankingJSON(JSONArray rootJSONArray) throws JSONException {
+        JSONObject jsonObject = (JSONObject) rootJSONArray.get(0);
+
     }
 
 }
