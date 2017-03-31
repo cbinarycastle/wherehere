@@ -58,7 +58,7 @@ public class ReviewRanking extends Fragment {
         params.put("purpose", "ranking");
 
         mHttpClient = new AsyncHttpClient();
-        mHttpClient.post("http://192.168.20.209:8080/accont.do", params, new JsonHttpResponseHandler(){
+        mHttpClient.get("http://192.168.20.209:8080/account.do", params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try {
@@ -71,7 +71,9 @@ public class ReviewRanking extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable error) {
-                System.out.println("Http get Fail");
+                error.printStackTrace();
+                System.out.println("Http get Fail" + statusCode);
+
             }
         });
 

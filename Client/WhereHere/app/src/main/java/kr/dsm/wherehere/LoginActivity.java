@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -24,14 +26,15 @@ import cz.msebera.android.httpclient.Header;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    LinearLayout container = (LinearLayout) findViewById(R.id.container);
+    RelativeLayout container;
 
-    AnimationDrawable anim = (AnimationDrawable) container.getBackground();
+    AnimationDrawable anim;
 
     TextView registerBtn;
     EditText idInput;
     EditText psInput;
     Button loginBtn;
+    Intent intent;
 
     private String reqUrl = "http://192.168.20.209:8080/account.do";
     private AsyncHttpClient client;
@@ -39,24 +42,17 @@ public class LoginActivity extends AppCompatActivity {
     RequestParams params = new RequestParams();
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (anim != null && !anim.isRunning())
-            anim.start();
-    }
-
-    // Stopping animation:- stop the animation on onPause.
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (anim != null && anim.isRunning())
-            anim.stop();
-    }
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+
+        container = (RelativeLayout) findViewById(R.id.container);
+        anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(6000);
+        anim.setExitFadeDuration(2000);
+
+        intent = new Intent(this, MainActivity.class);
+
         getSupportActionBar().hide();
 
         client = new AsyncHttpClient();
@@ -67,11 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn = (TextView) findViewById(R.id.register);
 
         loginBtn.setOnClickListener(login);
-        registerBtn.setOnClickListener(login);
-
-
-        anim.setEnterFadeDuration(6000);
-        anim.setExitFadeDuration(2000);
+        registerBtn.setOnClickListener(register);
     }
 
     TextView.OnClickListener register = new View.OnClickListener() {
@@ -93,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for (int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    Toast.makeText(getApplicationContext(), "회원가입이 되었어요", Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
@@ -102,6 +96,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for(int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    Toast.makeText(getApplicationContext(), "회원가입에 실패했어요 ㅠㅠ", Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
@@ -141,6 +137,8 @@ public class LoginActivity extends AppCompatActivity {
 //                    for (int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    finish();
+                    startActivity(intent);
                 }
 
                 @Override
@@ -150,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    for(int i = 0; i < headers.length; i++) {
 //                        Log.i(headers[i].getName(), headers[i].getValue());
 //                    }
+                    Toast.makeText(getApplicationContext(), "로그인에 실패했어요 ㅠㅠ", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -169,4 +168,19 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    // Stopping animation:- stop the animation on onPause.
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
+    }
 }

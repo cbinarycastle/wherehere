@@ -19,13 +19,11 @@ import android.widget.Spinner;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.Base64;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class WritePostFragment extends Fragment {
     private EditText contentInput;
 
     private String base64Image;
-    List<String> base64ImageList = new ArrayList<String>();
+    List<InputStream> inputStreamList = new ArrayList<InputStream>();
 
 
     private int RESULT_LOAD_IMG = 1;
@@ -122,13 +120,13 @@ public class WritePostFragment extends Fragment {
                 jParam.put("content", content);
                 jParam.put("writer", "test");
                 jParam.put("age", 19);
-                jParam.put("x", 1.0);
-                jParam.put("y", 50.5);
+                jParam.put("x", 37.886008);
+                jParam.put("y", 127.739903);
                 JSONArray imageArr = new JSONArray();
-                for (String image : base64ImageList) {
+                for (InputStream stream : inputStreamList) {
                     JSONObject temp = new JSONObject();
                     try {
-                        temp.put("data", image);
+                        temp.put("data", stream);
                         imageArr.put(temp);
                     } catch (Exception e) {
 
@@ -204,14 +202,17 @@ public class WritePostFragment extends Fragment {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                slectePic = selectedImage;
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byte_arr = stream.toByteArray();
-
-                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+                inputStreamList.add(imageStream);
+//                slectePic = selectedImage;
+//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                byte[] byte_arr = stream.toByteArray();
+//
+//
+//                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+//                //Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+//                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+//                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

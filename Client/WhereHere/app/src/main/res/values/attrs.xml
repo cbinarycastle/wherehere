@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DMSEditText">
+        <attr name="dmset_style" format="string">
+            <enum name="normal" value="0" />
+        </attr>
+        <attr name="dmset_backgroundColor" format="color" />
+        <attr name="dmset_textColor" format="color" />
+        <attr name="dmset_strokeColor" format="color" />
+        <attr name="dmset_focusStrokeColor" format="color" />
+        <attr name="dmset_cursorColor" format="color" />
+    </declare-styleable>
+</resources>

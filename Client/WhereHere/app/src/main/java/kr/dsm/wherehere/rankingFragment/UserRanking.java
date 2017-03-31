@@ -14,18 +14,22 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.JSONException;
+
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import kr.dsm.wherehere.ListViewAdapter;
 import kr.dsm.wherehere.R;
+import kr.dsm.wherehere.dto.User;
+import kr.dsm.wherehere.http.HttpResponseParser;
 
 /**
  * Created by hojak on 2017-04-01.
  */
 
 public class UserRanking extends Fragment{
-    private AsyncHttpClient mHttpClient;
+    private List<User> userList;
 
     @Nullable
     @Override
@@ -34,8 +38,7 @@ public class UserRanking extends Fragment{
         View view = inflater.inflate(R.layout.activity_user_ranking, null);
 
         ListView listView;
-        ListViewAdapter adapter;
-
+        final ListViewAdapter adapter;
         adapter = new ListViewAdapter();
 
         listView = (ListView) view.findViewById(R.id.listview1);
@@ -43,42 +46,36 @@ public class UserRanking extends Fragment{
 
         RequestParams params = new RequestParams();
         params.put("purpose", "ranking");
-        params.put("postnum", "2");
 
-        mHttpClient = new AsyncHttpClient();
-        mHttpClient.get("http://192.168.20.209:8080/getinfo.do", params, new JsonHttpResponseHandler() {
+        AsyncHttpClient mHttpClient = new AsyncHttpClient();
+        mHttpClient.get("http://192.168.20.209:8080/account.do", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try {
-                    JSONObject jsonObject = (JSONObject) response.get(0);
+                    userList = HttpResponseParser.parseLoadUserRankingJSON(response);
 
-                    System.out.println(jsonObject.get("content"));
-                    System.out.println(jsonObject.get("title"));
-                    System.out.println(jsonObject.get("writer"));
-                    System.out.println(jsonObject.get("x"));
-                    System.out.println(jsonObject.get("y"));
-                    System.out.println(jsonObject.get("recommand"));
-                    System.out.println(jsonObject.get("postnum"));
-                    System.out.println(jsonObject.get("unrecommand"));
-                }catch (Exception j){
+                    if(userList != null){
+                        for(int i=0; i< userList.size(); ++i) {
+                            adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
+                                    userList.get(i).getUserId(),"게시글 : "+userList.get(i).getPostCount());
+
+                            System.out.println("asdasd");
+                        }
+                    }
+
+                }catch (JSONException j){
                     j.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable error) {
-                System.out.println("Http get Fail");
+                System.out.println("Http get Fail" + statusCode);
             }
         });
-
-        for(int i=0; i< 20; ++i) {
-            listAdd(adapter, R.drawable.user, "hojak99", 1);
-        }
 
         return view;
     }
 
-    public void listAdd(ListViewAdapter adapter, int icon, String id, int count){
-        adapter.addItem(ContextCompat.getDrawable(getContext(), icon), id,"게시글 : "+count);
-    }
+
 }
