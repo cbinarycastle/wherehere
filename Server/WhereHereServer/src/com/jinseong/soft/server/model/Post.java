@@ -1,5 +1,7 @@
 package com.jinseong.soft.server.model;
 
+import org.json.JSONArray;
+
 /**
  * Created by dsm_025 on 2017-03-31.
  */
@@ -13,14 +15,14 @@ public class Post {
     private int age;
     private String image;
     private int recommend;
-    private int unrecommand;
+    private int unrecommend;
 
-    public int getUnrecommand() {
-        return unrecommand;
+    public int getUnrecommend() {
+        return unrecommend;
     }
 
-    public void setUnRecommand(int unrecommand) {
-        this.unrecommand = unrecommand;
+    public void setUnRecommend(int unrecommend) {
+        this.unrecommend = unrecommend;
     }
 
     public Post(String title, String content, String writer, double x, double y, int age, String image) {
@@ -32,6 +34,8 @@ public class Post {
         this.age = age;
         this.image = image;
     }
+
+
 
     public String getTitle() {
         return title;

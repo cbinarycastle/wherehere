@@ -13,13 +13,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/writerTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:padding="7dp"/>
             <ImageView
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/image"/>
             <TextView
-                android:id="@+id/textview"
+                android:id="@+id/bodyTextView"
                 android:gravity="center|left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

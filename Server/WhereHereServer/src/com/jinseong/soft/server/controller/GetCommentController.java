@@ -20,25 +20,35 @@ import java.util.ArrayList;
 public class GetCommentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
-        out.print(getJsonFromDB(Integer.valueOf(req.getParameter("ownno"))));
-        out.flush();
+        String ownNo;
+        if ((ownNo = req.getParameter("ownno")) != null) {
+            out.print(getJsonFromDB(Integer.valueOf(ownNo)));
+            out.flush();
+        }else{
+            out.println("파라미터가 잘못되었습니다.");
+            out.flush();
+        }
     }
 
-    private String getJsonFromDB(int ownNo){
+    private String getJsonFromDB(int ownNo) {
         WhereHereDAO dao = WhereHereDAO.getInstance();
         ArrayList<Comment> commentList = dao.selectCommentData(ownNo);
+        System.out.println(bindJsonFromPost(commentList).toString());
         return bindJsonFromPost(commentList).toString();
     }
 
-    private JSONArray bindJsonFromPost(ArrayList<Comment> commentList){
+    private JSONArray bindJsonFromPost(ArrayList<Comment> commentList) {
         JSONArray array = new JSONArray();
-        for(Comment comment :  commentList){
+        for (Comment comment : commentList) {
             JSONObject object = new JSONObject();
             object.put("writer", comment.getWriter());
             object.put("content", comment.getContent());
-            array.put(comment);
+            object.put("recommend", comment.getRecommend());
+            object.put("unrecommend", comment.getUnrecommend());
+            array.put(object);
         }
         return array;
     }

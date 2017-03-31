@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by dsm_025 on 2017-03-31.
@@ -20,13 +21,20 @@ public class WriteCommentController extends HttpServlet {
     private WhereHereDAO dao;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setCharacterEncoding("UTF-8");
         dao = WhereHereDAO.getInstance();
-        jsonData = req.getParameter("data");
-        System.out.println("Json Data : " + jsonData);
+        PrintWriter writer = resp.getWriter();
 
-        jsonObject = new JSONObject(jsonData);
-        insertToDB();
-        System.out.println("DB 저장을 완료했습니다.");
+        if((jsonData = req.getParameter("data")) != null) {
+            jsonObject = new JSONObject(jsonData);
+            insertToDB();
+            System.out.println("DB 저장을 완료했습니다.");
+        }else{
+            System.out.println("JSON Data가 잘못되었습니다.");
+            writer.print("Json Data가 잘못되었습니다.");
+            writer.flush();
+        }
+
     }
 
     private void insertToDB(){

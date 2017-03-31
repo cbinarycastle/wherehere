@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="DMSButton">
+        <attr name="dmsbtn_style" format="string">
+            <enum name="rectangle" value="0" />
+            <enum name="round" value="1" />
+        </attr>
+        <attr name="dmsbtn_backgroundColor" format="color" />
+        <attr name="dmsbtn_strokeColor" format="color" />
+        <attr name="dmsbtn_touchBackgroundColor" format="color" />
+        <attr name="dmsbtn_touchStrokeColor" format="color" />
+        <attr name="dmsbtn_textColor" format="color" />
+        <attr name="dmsbtn_touchTextColor" format="color" />
+    </declare-styleable>
     <declare-styleable name="DMSEditText">
         <attr name="dmset_style" format="string">
             <enum name="normal" value="0" />
