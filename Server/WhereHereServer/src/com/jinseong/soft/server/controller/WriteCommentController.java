@@ -19,14 +19,18 @@ public class WriteCommentController extends HttpServlet {
     private JSONObject jsonObject;
     private WhereHereDAO dao;
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         dao = WhereHereDAO.getInstance();
         jsonData = req.getParameter("data");
+        System.out.println("Json Data : " + jsonData);
+
         jsonObject = new JSONObject(jsonData);
+        insertToDB();
+        System.out.println("DB 저장을 완료했습니다.");
     }
 
     private void insertToDB(){
         Comment comment = new Comment(jsonObject.getString("writer"), jsonObject.getString("content"), jsonObject.getInt("ownNo"));
-        dao.insertPostData(comment);
+        dao.insertCommentData(comment);
     }
 }

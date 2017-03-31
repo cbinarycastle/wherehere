@@ -13,6 +13,15 @@ public class Post {
     private int age;
     private String image;
     private int recommend;
+    private int unrecommand;
+
+    public int getUnrecommand() {
+        return unrecommand;
+    }
+
+    public void setUnRecommand(int unrecommand) {
+        this.unrecommand = unrecommand;
+    }
 
     public Post(String title, String content, String writer, double x, double y, int age, String image) {
         this.title = title;

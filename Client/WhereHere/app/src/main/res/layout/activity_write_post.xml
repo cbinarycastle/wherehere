@@ -29,7 +29,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:id="@+id/linearLayout">
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="44dp"
+                />
+
             <Button
                 android:id="@+id/photo"
                 android:layout_width="wrap_content"
@@ -44,6 +52,8 @@
                 android:layout_toRightOf="@+id/photo"
                 android:text="추가" />
         </LinearLayout>
+
+
     </RelativeLayout>
 
 

@@ -8,6 +8,8 @@ public class Comment {
     private String content;
     private int no;
     private int ownNo;
+    private int recommend;
+    private int unrecommend;
 
     public Comment(String writer, String content, int ownNo) {
         this.writer = writer;
@@ -45,5 +47,21 @@ public class Comment {
 
     public void setOwnNo(int ownNo) {
         this.ownNo = ownNo;
+    }
+
+    public int getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(int recommend) {
+        this.recommend = recommend;
+    }
+
+    public int getUnrecommend() {
+        return unrecommend;
+    }
+
+    public void setUnrecommend(int unrecommend) {
+        this.unrecommend = unrecommend;
     }
 }

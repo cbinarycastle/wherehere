@@ -34,7 +34,7 @@ public class GetInformController extends HttpServlet {
             writer.flush();
         }else{
             System.out.println("Recommend Up Recieve");
-            dao.upCountRecommend(Integer.valueOf(req.getParameter("postnum")));
+            dao.upCountCommentRecommend(Integer.valueOf(req.getParameter("postnum")));
         }
     }
 

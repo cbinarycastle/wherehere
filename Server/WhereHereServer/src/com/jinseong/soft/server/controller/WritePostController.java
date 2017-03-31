@@ -18,10 +18,13 @@ public class WritePostController extends HttpServlet {
     private JSONObject jsonObject;
     private WhereHereDAO dao;
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("글쓰기 요청이 들어옴");
         dao = WhereHereDAO.getInstance();
         jsonData = req.getParameter("data");
         jsonObject = new JSONObject(jsonData);
+        insertToDB();
+        System.out.println("DB 저장을 완료했습니다.");
     }
 
     private void insertToDB(){
