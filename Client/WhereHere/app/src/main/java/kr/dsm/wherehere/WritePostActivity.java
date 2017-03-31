@@ -64,7 +64,7 @@ public class WritePostActivity extends Fragment {
 
     private Bitmap slectePic;
 
-    private String reqUrl = "http://192.168.20.7:8080/writepost.do";
+    private String reqUrl = "http://192.168.20.209:8080/writepost.do";
     private AsyncHttpClient client;
     private View view;
     private Spinner spinner;

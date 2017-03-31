@@ -3,4 +3,5 @@
     <string name="title_map">지도</string>
     <string name="title_ranking">순위</string>
     <string name="title_review">리뷰</string>
+    <string name="hint"><font size="20">이곳의 이름을 입력하세요.</font></string>
 </resources>
