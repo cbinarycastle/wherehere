@@ -6,6 +6,6 @@ package kr.dsm.wherehere.http;
 
 public class HttpConst {
 
-    public static final String SERVER_URL = "http://192.168.20.209:8080";
+    public static final String SERVER_URL = "http://192.168.0.8:8080";
 
 }

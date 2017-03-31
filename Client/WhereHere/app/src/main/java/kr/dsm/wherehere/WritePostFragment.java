@@ -55,6 +55,7 @@ public class WritePostFragment extends Fragment {
 
     private String base64Image;
     private InputStream inputStream;
+    private  File imageFIie;
     List<File> fileList = new ArrayList<File>();
 
 
@@ -62,7 +63,7 @@ public class WritePostFragment extends Fragment {
 
     private Bitmap slectePic;
 
-    private String reqUrl = "http://192.168.20.209:8080/writepost.do";
+    private String reqUrl = "http://192.168.0.8:8080/writepost.do";
     private AsyncHttpClient client;
     private View view;
     private Spinner spinner;
@@ -152,6 +153,8 @@ public class WritePostFragment extends Fragment {
             }
             params.put("data", jParam);
 
+           
+
             client.post(reqUrl, params, new AsyncHttpResponseHandler() {
                 @Override
                 public void onStart() {
@@ -206,11 +209,12 @@ public class WritePostFragment extends Fragment {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byte_arr = stream.toByteArray();
-
+                File file = new File(getPath(imageUri));
+                imageFIie = file;
 //                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
 //                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
 //                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
-                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
+               // base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
