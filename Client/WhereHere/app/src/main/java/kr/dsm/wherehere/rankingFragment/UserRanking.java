@@ -47,7 +47,7 @@ public class UserRanking extends Fragment{
         params.put("postnum", "2");
 
         mHttpClient = new AsyncHttpClient();
-        mHttpClient.get("http://192.168.20.7:8080/getinfo.do", params, new JsonHttpResponseHandler() {
+        mHttpClient.get("http://192.168.20.209:8080/getinfo.do", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 try {
