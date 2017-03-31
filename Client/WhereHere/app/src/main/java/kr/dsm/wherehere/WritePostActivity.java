@@ -26,14 +26,21 @@ import com.loopj.android.http.Base64;
 import com.loopj.android.http.RequestParams;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.client.ResponseHandler;
 import cz.msebera.android.httpclient.entity.StringEntity;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by dsm_024 on 2017-03-31.
@@ -46,12 +53,14 @@ public class WritePostActivity extends Fragment {
     private EditText contentInput;
 
     private String base64Image;
+    List<String> base64ImageList = new ArrayList<String>();
+
 
     private int RESULT_LOAD_IMG = 1;
 
     private Bitmap slectePic;
 
-    private String reqUrl = "http://192.168.20.7/writepost.do";
+    private String reqUrl = "http://192.168.20.7:8080/writepost.do";
     private AsyncHttpClient client;
     private View view;
 
@@ -61,7 +70,6 @@ public class WritePostActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.activity_write_post, null);
 
         client = new AsyncHttpClient();
@@ -104,14 +112,39 @@ public class WritePostActivity extends Fragment {
         public void onClick(View v) {
             String title = titleInput.getText().toString();
             String content = contentInput.getText().toString();
+            JSONObject jParam = new JSONObject();
+            try{
+                jParam.put("title", title);
+                jParam.put("title", content);
+                jParam.put("writer", "test");
+                jParam.put("age", 19);
+                jParam.put("x", 1.0);
+                jParam.put("y", 50.5);
+                JSONArray imageArr = new JSONArray();
+                for(String image : base64ImageList) {
+                    JSONObject temp = new JSONObject();
+                    try {
+                        temp.put("data", image);
+                        imageArr.put(temp);
+                    } catch (Exception e) {
 
-            params.put("title", title);
-            params.put("title", content);
-            params.put("writer", "test");
-            params.put("age", 19);
-            params.put("x", 1.0);
-            params.put("y", 50.5);
-            params.put("image", base64Image);
+                    }
+                }
+                jParam.put("image", imageArr);
+
+            } catch (Exception e) {
+
+            }
+//            params.put("title", title);
+//            params.put("title", content);
+//            params.put("writer", "test");
+//            params.put("age", 19);
+//            params.put("x", 1.0);
+//            params.put("y", 50.5);
+//            params.put("image", base64Image);
+//            params.setUseJsonStreamer(true);
+            params.put("data", jParam);
+            params.setUseJsonStreamer(true);
 
             client.post(reqUrl, params, new AsyncHttpResponseHandler() {
                 @Override
@@ -132,10 +165,10 @@ public class WritePostActivity extends Fragment {
                 public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error)
                 {
                     // Response failed :(
-                    Log.d("onFailure", "req fail");
-                    for(int i = 0; i < headers.length; i++) {
-                        Log.i(headers[i].getName(), headers[i].getValue());
-                    }
+                    Log.d("onFailure", "req fail" + statusCode);
+//                    for(int i = 0; i < headers.length; i++) {
+//                        Log.i(headers[i].getName(), headers[i].getValue());
+//                    }
                 }
 
                 @Override
@@ -159,7 +192,7 @@ public class WritePostActivity extends Fragment {
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
-        if (resultCode == RESULT_LOAD_IMG) {
+        if (resultCode == RESULT_OK) {
             try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
@@ -168,6 +201,10 @@ public class WritePostActivity extends Fragment {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byte_arr = stream.toByteArray();
+
+                base64ImageList.add(Base64.encodeToString(byte_arr, Base64.NO_WRAP));
+                Log.d("asdf","asdfl;kahsdflkjhaslkdjfhlakjsdfhlkajsdhflkajsdhflkajsdfh");
+                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
                 base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
