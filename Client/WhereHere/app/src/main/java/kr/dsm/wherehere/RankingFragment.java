@@ -71,11 +71,11 @@ public class RankingFragment extends Fragment {
         });
 
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
-                "Box","Account");
+                "hojak99","게시글 : 1");
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
-                "Circle","Account");
+                "rlawlstjd007","게시글 : 1");
         adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
-                "Ind","Account");
+                "graykick","게시글 : 1");
 
         return view;
     }
