@@ -3,7 +3,6 @@ package com.jinseong.soft.server.dao;
 import com.jinseong.soft.server.model.Comment;
 import com.jinseong.soft.server.model.Post;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class WhereHereDAO {
         System.out.println("DB 연결 성공");
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/auth", user, password);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/wherehere", user, password);
             st = connection.createStatement();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -38,15 +37,17 @@ public class WhereHereDAO {
         String sql = "insert into post(title, content, writer, x, y, age, image) + values ("
                 + post.getTitle() + ", " + post.getTitle() + ", " + post.getContent() + ", "
                 + post.getWriter() + ", " + post.getX() + ", " + post.getY() + ", " + post.getAge() + ", " + post.getImage() + ")";
+        System.out.println(sql);
         try {
             PreparedStatement preparedStmt = connection.prepareStatement(sql);
             preparedStmt.execute();
         } catch (SQLException e) {
+            System.out.println("DB Error");
             e.printStackTrace();
         }
     }
 
-    public void insertPostData(Comment comment) {
+    public void insertCommentData(Comment comment) {
         String sql = "insert into post(writer, content, ownno) + values ("
                 + comment.getWriter() + ", " + comment.getContent() + ", " + comment.getOwnNo() + ")";
         try {
@@ -73,7 +74,8 @@ public class WhereHereDAO {
             String image = rs.getString("image");
 
             data = new Post(title, content, writer, x, y, age, image);
-            data.setRecommend(rs.getInt("image"));
+            data.setRecommend(rs.getInt("recommeand"));
+            data.setUnRecommand(rs.getInt("unrecommand"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,7 +92,10 @@ public class WhereHereDAO {
                 String writer = rs.getString("writer");
                 String content = rs.getString("content");
                 int ownNo = rs.getInt("ownno");
-                commentList.add(new Comment(writer, content, ownNo));
+                Comment data = new Comment(writer, content, ownNo);
+                data.setRecommend(rs.getInt("recommend"));
+                data.setUnrecommend(rs.getInt("unrecommend"));
+                commentList.add(data);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,32 +103,25 @@ public class WhereHereDAO {
         return commentList;
     }
 
-    public String selectImagePath(int postNum){
-        String sql = "select image from post where postnum = " + postNum;
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            rs.next();
-            return rs.getString("image");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void upCountRecommend(int postNum){
-        String sql = "update post set recommend = recommend + 1 where postnum = " + postNum;
-        try {
-            PreparedStatement preparedStmt = connection.prepareStatement(sql);
-            preparedStmt.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public String selectImagePath(int postNum){
+//        String sql = "select image from post where postnum = " + postNum;
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet rs = statement.executeQuery(sql);
+//            rs.next();
+//            return rs.getString("image");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public ArrayList<Post> selectPostRankingData(int postNum) {
+        System.out.println("select method excute");
+
         ArrayList<Post> postList = new ArrayList<>();
-        String sql = "select * from comment order by recommend ASC";
+        String sql = "select * from post order by recommand ASC";
+        System.out.println("sql" + sql);
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
@@ -138,12 +136,56 @@ public class WhereHereDAO {
                 String image = rs.getString("image");
 
                 Post post = new Post(title, content, writer, x, y, age, image);
-                post.setRecommend(rs.getInt("recommend"));
+                post.setRecommend(rs.getInt("recommand"));
+                post.setUnRecommand(rs.getInt("unrecommand"));
                 postList.add(post);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("SQL Exception");
+
         }
         return postList;
+    }
+
+
+    public void upCountPostRecommend(int postNum){
+        String sql = "update post set recommend = recommend + 1 where postnum = " + postNum;
+        try {
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void downCountPostRecommend(int postNum){
+        String sql = "update post set unrecommend = unrecommend + 1 where postnum = " + postNum;
+        try {
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void upCountCommentRecommend(int commentnum){
+        String sql = "update comment set recommend = recommend + 1 where commentnum = " + commentnum;
+        try {
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void downCountCommentRecommend(int commentnum){
+        String sql = "update comment set unrecommend = unrecommend + 1 where commentnum = " + commentnum;
+        try {
+            PreparedStatement preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

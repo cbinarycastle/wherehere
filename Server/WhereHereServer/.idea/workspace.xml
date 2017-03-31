@@ -21,41 +21,45 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.6902227">
       <split-first>
         <leaf>
           <file leaf-file-name="WhereHereDAO.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
-                  <caret line="115" column="13" lean-forward="true" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+                <state relative-caret-position="142">
+                  <caret line="36" column="59" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#563#564#0" expanded="true" />
-                    <marker date="1490965398237" expanded="true" signature="1114:1407" ph="insert into post... " />
-                    <marker date="1490965398237" expanded="true" signature="1696:1849" ph="insert into post... " />
-                    <marker date="1490965398237" expanded="true" signature="2156:2174" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="2156:2180" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="2156:2191" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3047" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3066" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3067" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3069" ph="select * fro... comment" />
-                    <marker date="1490965398237" expanded="true" signature="3677:3716" ph="select image... post" />
-                    <marker date="1490965398237" expanded="true" signature="4103:4161" ph="update post " />
-                    <marker date="1490965398237" expanded="true" signature="4528:4572" ph="select * fro... comment" />
+                    <element signature="e#525#526#0" expanded="true" />
+                    <marker date="1490970277698" expanded="true" signature="1081:1374" ph="insert into post... " />
+                    <marker date="1490970277698" expanded="true" signature="1743:1896" ph="insert into post... " />
+                    <marker date="1490970277698" expanded="true" signature="2203:2221" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="2203:2227" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="2203:2238" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3158" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3177" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3178" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3180" ph="select * fro... comment" />
+                    <marker date="1490970277698" expanded="true" signature="3951:3990" ph="select image... post" />
+                    <marker date="1490970277698" expanded="true" signature="4521:4562" ph="select * fro... comment" />
+                    <marker date="1490970277698" expanded="true" signature="5612:5670" ph="update post " />
+                    <marker date="1490970277698" expanded="true" signature="5972:6034" ph="update post " />
+                    <marker date="1490970277698" expanded="true" signature="6340:6404" ph="update comme... " />
+                    <marker date="1490970277698" expanded="true" signature="6715:6783" ph="update comme... " />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="WritePostController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java">
+          <file leaf-file-name="Post.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/model/Post.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="219">
-                  <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+                <state relative-caret-position="45">
+                  <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
                   <folding>
-                    <element signature="imports" expanded="true" />
+                    <element signature="e#477#478#0" expanded="true" />
+                    <element signature="e#523#524#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -64,8 +68,8 @@
           <file leaf-file-name="GetCommentController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetCommentController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="164">
-                  <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="43" selection-end-column="5" />
+                <state relative-caret-position="183">
+                  <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -73,11 +77,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GetInformController.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GetInformController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetInformController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="167">
-                  <caret line="32" column="66" lean-forward="true" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+                <state relative-caret-position="380">
+                  <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="WritePostController.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="200">
+                  <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -88,8 +104,8 @@
           <file leaf-file-name="GetImagePathController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetImagePathController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="76">
-                  <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="48" />
+                <state relative-caret-position="319">
+                  <caret line="24" column="55" lean-forward="false" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -100,8 +116,8 @@
           <file leaf-file-name="GetPostController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetPostController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="466">
-                  <caret line="39" column="49" lean-forward="false" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="49" />
+                <state relative-caret-position="238">
+                  <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="24" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -109,31 +125,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="server-config.wsdd" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/WEB-INF/server-config.wsdd">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
-                  <caret line="40" column="81" lean-forward="false" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="81" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="247">
-                  <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+                <state relative-caret-position="152">
+                  <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="WriteCommentController.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="WriteCommentController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WriteCommentController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="143">
-                  <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+                <state relative-caret-position="186">
+                  <caret line="32" column="67" lean-forward="true" selection-start-line="32" selection-start-column="67" selection-end-line="32" selection-end-column="67" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -149,21 +155,20 @@
             <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="148">
-                  <caret line="70" column="32" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="32" />
+                  <caret line="71" column="32" lean-forward="false" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="32" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <marker date="1490965398237" expanded="true" signature="1114:1407" ph="insert into post... " />
-                    <marker date="1490965398237" expanded="true" signature="1696:1849" ph="insert into post... " />
-                    <marker date="1490965398237" expanded="true" signature="2156:2174" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="2156:2180" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="2156:2191" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3047" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3066" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3067" ph="select * fro... post" />
-                    <marker date="1490965398237" expanded="true" signature="3033:3069" ph="select * fro... comment" />
-                    <marker date="1490965398237" expanded="true" signature="3677:3716" ph="select image... post" />
-                    <marker date="1490965398237" expanded="true" signature="4103:4161" ph="update post " />
-                    <marker date="1490965398237" expanded="true" signature="4528:4572" ph="select * fro... comment" />
+                    <marker date="1490970277698" expanded="true" signature="1081:1374" ph="insert into post... " />
+                    <marker date="1490970277698" expanded="true" signature="1743:1896" ph="insert into post... " />
+                    <marker date="1490970277698" expanded="true" signature="2203:2221" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="2203:2227" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="2203:2238" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3158" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3177" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3178" ph="select * fro... post" />
+                    <marker date="1490970277698" expanded="true" signature="3144:3180" ph="select * fro... comment" />
+                    <marker date="1490970277698" expanded="true" signature="3951:3990" ph="select image... post" />
+                    <marker date="1490970277698" expanded="true" signature="4521:4562" ph="select * fro... comment" />
                   </folding>
                 </state>
               </provider>
@@ -185,13 +190,25 @@
       <find>setNo</find>
       <find>recco</find>
       <find>recc</find>
-      <find>re</find>
       <find>rec</find>
-      <find>reco</find>
       <find>recom</find>
       <find>recomm</find>
       <find>recomma</find>
+      <find>Commend</find>
+      <find>Comment</find>
+      <find>auth</find>
       <find>recommand</find>
+      <find>recomME</find>
+      <find>recomM</find>
+      <find>RE</find>
+      <find>RECOM</find>
+      <find>RECO</find>
+      <find>REC</find>
+      <find>re</find>
+      <find>reco</find>
+      <find>recomme</find>
+      <find>recommend</find>
+      <find>select</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -203,18 +220,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/Post.java" />
-        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java" />
-        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/model/Comment.java" />
-        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WriteCommentController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b735d372-3ec4-4663-bd30-0499253e5850/console.sql" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetCommentController.java" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/model/Comment.java" />
         <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetImagePathController.java" />
+        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetInformController.java" />
+        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java" />
         <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/model/Post.java" />
         <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetPostController.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetInformController.java" />
+        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java" />
+        <option value="$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WriteCommentController.java" />
       </list>
     </option>
   </component>
@@ -329,6 +346,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -819,6 +840,24 @@
       <predefined_log_file id="Tomcat Host Manager" enabled="false" />
       <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="64934" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -855,12 +894,12 @@
       <option name="presentableId" value="Default" />
       <updated>1490949400917</updated>
       <workItem from="1490949404927" duration="2000" />
-      <workItem from="1490949465231" duration="17393000" />
+      <workItem from="1490949465231" duration="20718000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17395000" />
+    <option name="totallyTimeSpent" value="20720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -878,20 +917,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33009708" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24377745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -908,7 +947,28 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java</url>
+          <line>70</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -924,72 +984,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/model/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="27" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/model/Post.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="91" column="35" lean-forward="false" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="35" />
-          <folding>
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#683#684#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#759#760#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-            <element signature="e#869#870#0" expanded="true" />
-            <element signature="e#907#908#0" expanded="true" />
-            <element signature="e#938#939#0" expanded="true" />
-            <element signature="e#968#969#0" expanded="true" />
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1030#1031#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1142#1143#0" expanded="true" />
-            <element signature="e#1170#1171#0" expanded="true" />
-            <element signature="e#1212#1213#0" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-            <element signature="e#1274#1275#0" expanded="true" />
-            <element signature="e#1298#1299#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1358#1359#0" expanded="true" />
-            <element signature="e#1386#1387#0" expanded="true" />
-            <element signature="e#1410#1411#0" expanded="true" />
-            <element signature="e#1444#1445#0" expanded="true" />
-            <element signature="e#1470#1471#0" expanded="true" />
-            <element signature="e#1497#1498#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-            <element signature="e#1558#1559#0" expanded="true" />
-            <element signature="e#1588#1589#0" expanded="true" />
-            <element signature="e#1621#1622#0" expanded="true" />
-            <element signature="e#1653#1654#0" expanded="true" />
-            <element signature="e#1700#1701#0" expanded="true" />
-            <element signature="e#1742#1743#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WriteCommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,54 +1000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetPostController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="39" column="49" lean-forward="false" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetImagePathController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetCommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="34" column="1" lean-forward="false" selection-start-line="34" selection-start-column="1" selection-end-line="43" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_40/src.zip!/java/lang/Override.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -1057,10 +1008,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/model/Comment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1142#1143#0" expanded="true" />
+            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1227#1228#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetImagePathController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="24" column="55" lean-forward="false" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/model/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+          <folding>
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetCommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="30" column="52" lean-forward="false" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetInformController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="32" column="66" lean-forward="true" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+        <state relative-caret-position="380">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/GetPostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1069,22 +1086,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/dao/WhereHereDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="70" column="32" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="32" />
+        <state relative-caret-position="142">
+          <caret line="36" column="59" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1490965398237" expanded="true" signature="1114:1407" ph="insert into post... " />
-            <marker date="1490965398237" expanded="true" signature="1696:1849" ph="insert into post... " />
-            <marker date="1490965398237" expanded="true" signature="2156:2174" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="2156:2180" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="2156:2191" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="3033:3047" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="3033:3066" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="3033:3067" ph="select * fro... post" />
-            <marker date="1490965398237" expanded="true" signature="3033:3069" ph="select * fro... comment" />
-            <marker date="1490965398237" expanded="true" signature="3677:3716" ph="select image... post" />
-            <marker date="1490965398237" expanded="true" signature="4103:4161" ph="update post " />
-            <marker date="1490965398237" expanded="true" signature="4528:4572" ph="select * fro... comment" />
+            <element signature="e#525#526#0" expanded="true" />
+            <marker date="1490970277698" expanded="true" signature="1081:1374" ph="insert into post... " />
+            <marker date="1490970277698" expanded="true" signature="1743:1896" ph="insert into post... " />
+            <marker date="1490970277698" expanded="true" signature="2203:2221" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="2203:2227" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="2203:2238" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="3144:3158" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="3144:3177" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="3144:3178" ph="select * fro... post" />
+            <marker date="1490970277698" expanded="true" signature="3144:3180" ph="select * fro... comment" />
+            <marker date="1490970277698" expanded="true" signature="3951:3990" ph="select image... post" />
+            <marker date="1490970277698" expanded="true" signature="4521:4562" ph="select * fro... comment" />
+            <marker date="1490970277698" expanded="true" signature="5612:5670" ph="update post " />
+            <marker date="1490970277698" expanded="true" signature="5972:6034" ph="update post " />
+            <marker date="1490970277698" expanded="true" signature="6340:6404" ph="update comme... " />
+            <marker date="1490970277698" expanded="true" signature="6715:6783" ph="update comme... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WritePostController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jinseong/soft/server/controller/WriteCommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="32" column="67" lean-forward="true" selection-start-line="32" selection-start-column="67" selection-end-line="32" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

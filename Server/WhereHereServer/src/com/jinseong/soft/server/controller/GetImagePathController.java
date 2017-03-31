@@ -17,12 +17,12 @@ public class GetImagePathController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/text");
         PrintWriter out = resp.getWriter();
-        out.print(getImagePathFromDB(Integer.valueOf(req.getParameter("postnum"))));
+//        out.print(getImagePathFromDB(Integer.valueOf(req.getParameter("postnum"))));
         out.flush();
     }
 
-    private String getImagePathFromDB(int postNum){
-        WhereHereDAO dao = WhereHereDAO.getInstance();
-        return dao.selectImagePath(postNum);
-    }
+//    private String getImagePathFromDB(int postNum){
+//        WhereHereDAO dao = WhereHereDAO.getInstance();
+//        return dao.selectImagePath(postNum);
+//    }
 }
