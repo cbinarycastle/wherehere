@@ -26,13 +26,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
+import static android.R.attr.bitmap;
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -46,7 +50,7 @@ public class WritePostFragment extends Fragment {
     private EditText contentInput;
 
     private String base64Image;
-    List<InputStream> inputStreamList = new ArrayList<InputStream>();
+    List<File> fileList = new ArrayList<File>();
 
 
     private int RESULT_LOAD_IMG = 1;
@@ -125,10 +129,10 @@ public class WritePostFragment extends Fragment {
                 jParam.put("x", 37.886008);
                 jParam.put("y", 127.739903);
                 JSONArray imageArr = new JSONArray();
-                for (InputStream stream : inputStreamList) {
+                for (File file : fileList) {
                     JSONObject temp = new JSONObject();
                     try {
-                        temp.put("data", stream);
+                        temp.put("data", file);
                         imageArr.put(temp);
                     } catch (Exception e) {
 
@@ -201,10 +205,21 @@ public class WritePostFragment extends Fragment {
 ////                Log.d("image data", Base64.encodeToString(byte_arr, Base64.NO_WRAP));
 ////                base64Image = Base64.encodeToString(byte_arr, Base64.NO_WRAP);
             try {
+                File file = new File("image.jpg");
+                OutputStream outStream = new FileOutputStream(file);
+
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                inputStreamList.add(imageStream);
+
+                try{
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                }catch (Exception e) {
+
+                }
+
+
+                  fileList.add(file);
 //                slectePic = selectedImage;
 //                ByteArrayOutputStream stream = new ByteArrayOutputStream();
 //                slectePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
