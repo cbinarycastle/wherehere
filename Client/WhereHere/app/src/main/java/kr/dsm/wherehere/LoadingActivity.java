@@ -54,11 +54,12 @@ public class LoadingActivity extends Activity {
 
         new TedPermission(this)
                 .setPermissionListener(permissionListener)
-                .setRationaleMessage("서버와 통신을 하기 위해 인터넷 접근 권한이 필요합니다")
+                .setRationaleMessage("서버통신과 갤러리에 대한 접근 권한이 필요합니다")
                 .setDeniedMessage("여가 어디래요 를 사용할 수 없음" +
                         "[설정] > [권한] 에서 권한을 허용할 수 있습니다")
                 .setPermissions(
-                        Manifest.permission.INTERNET
+                        Manifest.permission.INTERNET,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
                 ).check();
 
         setContentView(R.layout.activity_loading);

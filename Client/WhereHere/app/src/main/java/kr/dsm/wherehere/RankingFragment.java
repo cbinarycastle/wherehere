@@ -2,9 +2,11 @@ package kr.dsm.wherehere;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -30,8 +32,13 @@ public class RankingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_ranking, null);
 
-        TextView textView = (TextView) view.findViewById(R.id.textview);
-        textView.setText("Hi");
+        ListView listView;
+        ListViewAdapter adapter;
+
+        adapter = new ListViewAdapter();
+
+        listView = (ListView) view.findViewById(R.id.listview1);
+        listView.setAdapter(adapter);
 
         RequestParams params = new RequestParams();
         params.put("purpose", "ranking");
@@ -62,6 +69,13 @@ public class RankingFragment extends Fragment {
                 System.out.println("Http get Fail");
             }
         });
+
+        adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
+                "Box","Account");
+        adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
+                "Circle","Account");
+        adapter.addItem(ContextCompat.getDrawable(getContext(), R.drawable.user),
+                "Ind","Account");
 
         return view;
     }
