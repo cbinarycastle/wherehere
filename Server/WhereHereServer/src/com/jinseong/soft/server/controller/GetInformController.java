@@ -62,7 +62,7 @@ public class GetInformController extends HttpServlet {
             object.put("x", post.getX());
             object.put("y", post.getY());
             object.put("age", post.getAge());
-            object.put("image", post.getImage());
+            object.put("image", post.getImage().replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", ""));
             object.put("recommend", post.getRecommend());
             object.put("unrecommend", post.getUnrecommend());
             array.put(object);

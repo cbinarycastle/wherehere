@@ -46,7 +46,7 @@ public class GetPostController extends HttpServlet {
             object.put("x", post.getX());
             object.put("y", post.getY());
             object.put("age", post.getAge());
-            object.put("image", new JSONArray(post.getImage()));
+            object.put("image", post.getImage().replaceAll("\\\\", ""));
             object.put("recommend", post.getRecommend());
             object.put("unrecommend", post.getUnrecommend());
             array.put(object);

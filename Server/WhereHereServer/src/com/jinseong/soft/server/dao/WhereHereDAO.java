@@ -76,7 +76,6 @@ public class WhereHereDAO {
         ArrayList<Post> dataList = new ArrayList<>();
         String sql = "select * from post";
         try {
-            System.out.println("Post Data 보내는 중");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -96,6 +95,8 @@ public class WhereHereDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Post Data DB에서 가져옴");
+
         return dataList;
     }
 
@@ -216,7 +217,7 @@ public class WhereHereDAO {
 
     public ArrayList<User> selectUserListByPostCount(){
         ArrayList<User> list = new ArrayList<>();
-        String sql = "select  * from user order by postcount ASC";
+        String sql = "select  * from user order by postcount DESC";
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
